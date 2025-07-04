@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TestOrin.Icm20948.Enums
+{
+    public enum AccRangeDlpfBandWidth
+    {
+        ACC_DLPF_NONE = 0b00000000,
+        ACC_DLPF_BANDWIDTH_246HZ = 0b00001001,
+        ACC_DLPF_BANDWIDTH_111HZ = 0b00010001,
+        ACC_DLPF_BANDWIDTH_50HZ = 0b00011001,
+        ACC_DLPF_BANDWIDTH_24HZ = 0b00100001,
+        ACC_DLPF_BANDWIDTH_12HZ = 0b00101001,
+        ACC_DLPF_BANDWIDTH_6HZ = 0b00110001,
+        ACC_DLPF_BANDWIDTH_473HZ = 0b00111001
+    }
+}

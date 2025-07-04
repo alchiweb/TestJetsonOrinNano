@@ -1,0 +1,127 @@
+﻿// ====================================================================================================
+// Produced by the Free Edition of C++ to C# Converter.
+// Purchase a Premium Edition license at:
+// https://www.tangiblesoftwaresolutions.com/order/order-cplus-to-csharp.html
+// ====================================================================================================
+namespace TestOrin.Icm20948
+{
+	internal static class Constants
+	{
+		public const byte I2C_ADD_ICM20948 = 0x68;
+		public const byte I2C_ADD_ICM20948_AK09916 = 0x0C;
+		public const byte I2C_ADD_ICM20948_AK09916_READ = 0x80;
+		public const byte I2C_ADD_ICM20948_AK09916_WRITE = 0x00;
+		public const byte REG_ADD_WIA = 0x00;
+		public const byte REG_VAL_WIA = 0xEA;
+		public const byte REG_ADD_USER_CTRL = 0x03;
+		public const byte REG_VAL_BIT_DMP_EN = 0x80;
+		public const byte REG_VAL_BIT_FIFO_EN = 0x40;
+		public const byte REG_VAL_BIT_I2C_MST_EN = 0x20;
+		public const byte REG_VAL_BIT_I2C_IF_DIS = 0x10;
+		public const byte REG_VAL_BIT_DMP_RST = 0x08;
+		public const byte REG_VAL_BIT_DIAMOND_DMP_RST = 0x04;
+		public const byte REG_ADD_PWR_MIGMT_1 = 0x06;
+		public const byte REG_VAL_ALL_RGE_RESET = 0x80;
+		public const byte REG_VAL_RUN_MODE = 0x01; //Non low-power mode
+		public const byte REG_ADD_LP_CONFIG = 0x05;
+		public const byte REG_ADD_PWR_MGMT_1 = 0x06;
+		public const byte REG_ADD_PWR_MGMT_2 = 0x07;
+		public const byte REG_VAL_SENSORS_ON = 0x00;
+		public const byte REG_VAL_DISABLE_GYRO = 0x07;
+		public const byte REG_VAL_DISABLE_ACC = 0x38;
+		public const byte REG_ADD_ACCEL_XOUT_H = 0x2D;
+		public const byte REG_ADD_ACCEL_XOUT_L = 0x2E;
+		public const byte REG_ADD_ACCEL_YOUT_H = 0x2F;
+		public const byte REG_ADD_ACCEL_YOUT_L = 0x30;
+		public const byte REG_ADD_ACCEL_ZOUT_H = 0x31;
+		public const byte REG_ADD_ACCEL_ZOUT_L = 0x32;
+		public const byte REG_ADD_GYRO_XOUT_H = 0x33;
+		public const byte REG_ADD_GYRO_XOUT_L = 0x34;
+		public const byte REG_ADD_GYRO_YOUT_H = 0x35;
+		public const byte REG_ADD_GYRO_YOUT_L = 0x36;
+		public const byte REG_ADD_GYRO_ZOUT_H = 0x37;
+		public const byte REG_ADD_GYRO_ZOUT_L = 0x38;
+		public const byte REG_ADD_TEMP_OUT_H = 0x39;
+		public const byte REG_ADD_TEMP_OUT_L = 0x3A;
+		public const byte REG_ADD_EXT_SENS_DATA_00 = 0x3B;
+		public const byte REG_ADD_FIFO_EN_1 = 0x66;
+		public const byte REG_ADD_FIFO_EN_2 = 0x67;
+		public const byte REG_ADD_FIFO_RST = 0x68;
+		public const byte REG_ADD_FIFO_MODE = 0x69;
+		public const byte REG_ADD_FIFO_COUNTH = 0x70;
+		public const byte REG_ADD_FIFO_COUNTL = 0x71;
+		public const byte REG_ADD_FIFO_R_W = 0x72;
+		public const byte REG_ADD_REG_BANK_SEL = 0x7F;
+		public const byte REG_VAL_REG_BANK_0 = 0x00;
+		public const byte REG_VAL_REG_BANK_1 = 0x10;
+		public const byte REG_VAL_REG_BANK_2 = 0x20;
+		public const byte REG_VAL_REG_BANK_3 = 0x30;
+		public const byte REG_ADD_GYRO_SMPLRT_DIV = 0x00;
+		public const byte REG_ADD_GYRO_CONFIG_1 = 0x01;
+		public const byte REG_ADD_GYRO_CONFIG_2 = 0x02;
+		public const byte REG_ADD_XG_OFFS_USRH = 0x03;
+		public const byte REG_ADD_XG_OFFS_USRL = 0x04;
+		public const byte REG_ADD_YG_OFFS_USRH = 0x05;
+		public const byte REG_ADD_YG_OFFS_USRL = 0x06;
+		public const byte REG_ADD_ZG_OFFS_USRH = 0x07;
+		public const byte REG_ADD_ZG_OFFS_USRL = 0x08;
+		public const byte REG_ADD_XA_OFFS_H = 0x14;
+		public const byte REG_ADD_XA_OFFS_L = 0x15;
+		public const byte REG_ADD_YA_OFFS_H = 0x17;
+		public const byte REG_ADD_YA_OFFS_L = 0x18;
+		public const byte REG_ADD_ZA_OFFS_H = 0x1A;
+		public const byte REG_ADD_ZA_OFFS_L = 0x1B;
+		public const byte REG_VAL_BIT_GYRO_DLPCFG_2 = 0x10; // bit[5:3]
+		public const byte REG_VAL_BIT_GYRO_DLPCFG_4 = 0x20; // bit[5:3]
+		public const byte REG_VAL_BIT_GYRO_DLPCFG_6 = 0x30; // bit[5:3]
+		public const byte REG_VAL_BIT_GYRO_FS_250DPS = 0x00; // bit[2:1]
+		public const byte REG_VAL_BIT_GYRO_FS_500DPS = 0x02; // bit[2:1]
+		public const byte REG_VAL_BIT_GYRO_FS_1000DPS = 0x04; // bit[2:1]
+		public const byte REG_VAL_BIT_GYRO_FS_2000DPS = 0x06; // bit[2:1]
+		public const byte REG_VAL_BIT_GYRO_DLPF = 0x01; // bit[0]
+		public const byte REG_ADD_ACCEL_SMPLRT_DIV_1 = 0x10;
+		public const byte REG_ADD_ACCEL_SMPLRT_DIV_2 = 0x11;
+		public const byte REG_ADD_ACCEL_CONFIG = 0x14;
+		public const byte REG_ADD_ACCEL_CONFIG_2 = 0x15;
+		public const byte REG_VAL_BIT_ACCEL_DLPCFG_2 = 0x10; // bit[5:3]
+		public const byte REG_VAL_BIT_ACCEL_DLPCFG_4 = 0x20; // bit[5:3]
+		public const byte REG_VAL_BIT_ACCEL_DLPCFG_6 = 0x30; // bit[5:3]
+		public const byte REG_VAL_BIT_ACCEL_FS_2g = 0x00; // bit[2:1]
+		public const byte REG_VAL_BIT_ACCEL_FS_4g = 0x02; // bit[2:1]
+		public const byte REG_VAL_BIT_ACCEL_FS_8g = 0x04; // bit[2:1]
+		public const byte REG_VAL_BIT_ACCEL_FS_16g = 0x06; // bit[2:1]
+		public const byte REG_VAL_BIT_ACCEL_DLPF = 0x01; // bit[0]
+		public const byte REG_ADD_TEMP_CONFIG = 0x53;
+		public const byte REG_ADD_I2C_MST_CTRL = 0x01;
+		public const byte REG_VAL_I2C_MST_CTRL_CLK_400KHZ = 0x07;
+		public const byte REG_ADD_I2C_SLV0_ADDR = 0x03;
+		public const byte REG_ADD_I2C_SLV0_REG = 0x04;
+		public const byte REG_ADD_I2C_SLV0_CTRL = 0x05;
+		public const byte REG_VAL_BIT_SLV0_EN = 0x80;
+		public const byte REG_VAL_BIT_MASK_LEN = 0x07;
+		public const byte REG_ADD_I2C_SLV0_DO = 0x06;
+		public const byte REG_ADD_I2C_SLV1_ADDR = 0x07;
+		public const byte REG_ADD_I2C_SLV1_REG = 0x08;
+		public const byte REG_ADD_I2C_SLV1_CTRL = 0x09;
+		public const byte REG_ADD_I2C_SLV1_DO = 0x0A;
+		public const byte REG_ADD_MAG_WIA1 = 0x00;
+		public const byte REG_VAL_MAG_WIA1 = 0x48;
+		public const byte REG_ADD_MAG_WIA2 = 0x01;
+		public const byte REG_VAL_MAG_WIA2 = 0x09;
+		public const byte REG_ADD_MAG_ST1 = 0x10;
+		public const byte REG_ADD_MAG_DATA = 0x11;
+		public const byte REG_ADD_MAG_CNTL2 = 0x31;
+		public const byte REG_VAL_MAG_MODE_PD = 0x00;
+		public const byte REG_VAL_MAG_MODE_SM = 0x01;
+		public const byte REG_VAL_MAG_MODE_10HZ = 0x02;
+		public const byte REG_VAL_MAG_MODE_20HZ = 0x04;
+		public const byte REG_VAL_MAG_MODE_50HZ = 0x05;
+		public const byte REG_VAL_MAG_MODE_100HZ = 0x08;
+		public const byte REG_VAL_MAG_MODE_ST = 0x10;
+		public const byte REG_ADD_MAG_CNTL3 = 0x32;
+		public const byte REG_VAL_MAG_RESET = 0x01;
+		public const float beta = 0.1f; // 2 * proportional gain (Kp)
+		public const float Kp = 4.50f; // proportional gain governs rate of convergence to accelerometer/magnetometer
+		public const float Ki = 1.0f; // integral gain governs rate of convergence of gyroscope biases
+	}
+}
