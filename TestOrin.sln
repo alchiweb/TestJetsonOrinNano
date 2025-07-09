@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestOrin", "src\TestOrin\Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeadowOrin", "src\MeadowOrin\MeadowOrin.csproj", "{FC376246-B46A-7077-D69B-3C415F4FF657}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Alchiweb.IoT", "Alchiweb.IoT\Alchiweb.IoT.shproj", "{1BFFBB0E-0D7E-4506-B36D-1B3B0423C6E5}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Alchiweb.IoT", "src\Alchiweb.IoT\Alchiweb.IoT.shproj", "{1BFFBB0E-0D7E-4506-B36D-1B3B0423C6E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,8 +31,8 @@ Global
 		SolutionGuid = {98699620-CC70-4893-990F-E5F9FE7DFD99}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Alchiweb.IoT\Alchiweb.IoT.projitems*{1bffbb0e-0d7e-4506-b36d-1b3b0423c6e5}*SharedItemsImports = 13
-		Alchiweb.IoT\Alchiweb.IoT.projitems*{e99b72d5-2e13-4bb3-b580-1977e144919e}*SharedItemsImports = 5
-		Alchiweb.IoT\Alchiweb.IoT.projitems*{fc376246-b46a-7077-d69b-3c415f4ff657}*SharedItemsImports = 5
+		src\Alchiweb.IoT\Alchiweb.IoT.projitems*{1bffbb0e-0d7e-4506-b36d-1b3b0423c6e5}*SharedItemsImports = 13
+		src\Alchiweb.IoT\Alchiweb.IoT.projitems*{e99b72d5-2e13-4bb3-b580-1977e144919e}*SharedItemsImports = 5
+		src\Alchiweb.IoT\Alchiweb.IoT.projitems*{fc376246-b46a-7077-d69b-3c415f4ff657}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal

@@ -12,6 +12,6 @@
     <PackageReference Include="System.Device.Gpio" Version="4.0.1" />
   </ItemGroup>
 
-  <Import Project="..\..\Alchiweb.IoT\Alchiweb.IoT.projitems" Label="Shared" />
+  <Import Project="..\Alchiweb.IoT\Alchiweb.IoT.projitems" Label="Shared" />
 
 </Project>

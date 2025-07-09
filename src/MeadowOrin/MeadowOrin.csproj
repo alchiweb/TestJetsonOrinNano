@@ -14,5 +14,5 @@
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
     </ItemGroup>
-    <Import Project="..\..\Alchiweb.IoT\Alchiweb.IoT.projitems" Label="Shared" />
+    <Import Project="..\Alchiweb.IoT\Alchiweb.IoT.projitems" Label="Shared" />
 </Project>
