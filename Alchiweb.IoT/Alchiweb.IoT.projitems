@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>1bffbb0e-0d7e-4506-b36d-1b3b0423c6e5</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Alchiweb.IoT</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Icm20948\Configs\AccConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Icm20948\Configs\GyroConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Icm20948\Configs\IcmConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Icm20948\Configs\TempConfig.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Icm20948\Constants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Icm20948\Conversion.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Icm20948\Enums\AccAveraging.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Icm20948\Enums\AccRange.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Icm20948\Enums\AccRangeDlpfBandWidth.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Icm20948\Enums\AhrsAlgorithm.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Icm20948\Enums\GyroAveraging.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Icm20948\Enums\GyroRange.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Icm20948\Enums\GyroRangeDlpfBandWidth.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Icm20948\Enums\IcmBank.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Icm20948\Enums\TempDlpfBandWidth.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Icm20948\ImuData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Icm20948\ImuIcm20948.cs" />
+  </ItemGroup>
+</Project>

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TestOrin.Icm20948.Enums;
+﻿using Alchiweb.IoT.Icm20948.Enums;
 
-namespace TestOrin.Icm20948.Configs
+namespace Alchiweb.IoT.Icm20948.Configs
 {
     public class TempConfig
     {

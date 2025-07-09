@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TestOrin.Icm20948.Enums
+﻿namespace Alchiweb.IoT.Icm20948.Enums
 {
     public enum GyroAveraging
     {

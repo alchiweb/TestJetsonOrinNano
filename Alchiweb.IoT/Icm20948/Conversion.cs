@@ -1,4 +1,6 @@
-﻿namespace TestOrin.Icm20948
+﻿using System;
+
+namespace Alchiweb.IoT.Icm20948
 {
 	public static class Conversion
 	{
@@ -20,20 +22,20 @@
 		 *  @return the result
 		 */
 		public static float invSqrt(float x)
-        {
-            float xhalf = 0.5f * x;
-            int i = BitConverter.SingleToInt32Bits(x);
-            i = 0x5f3759df - (i >> 1);
-            x = BitConverter.Int32BitsToSingle(i);
-            x = x * (1.5f - xhalf * x * x);
-            return x;
-        }
+		{
+			float xhalf = 0.5f * x;
+			int i = BitConverter.SingleToInt32Bits(x);
+			i = 0x5f3759df - (i >> 1);
+			x = BitConverter.Int32BitsToSingle(i);
+			x = x * (1.5f - xhalf * x * x);
+			return x;
+		}
 
-        /**
+		/**
 		 * Converts quaternion to Euler angles.
 		 *  @param[in/out] data the IMU data structure with quaternion and Euler angles.
 		 */
-        public static void quatToAngles(ImuData data)
+		public static void quatToAngles(ImuData data)
 		{
 			data.Angles[1] = 2 * (data.Quat[0] * data.Quat[2] - data.Quat[1] * data.Quat[3]);
 			if (Math.Abs(data.Angles[1]) >= 1)
@@ -49,8 +51,8 @@
 		}
 
 
-        /** Scale to convert angles from radians to degrees. */
-        internal static float RAD_TO_DEG = 180.0f / (float)Math.PI;
+		/** Scale to convert angles from radians to degrees. */
+		internal static float RAD_TO_DEG = 180.0f / (float)Math.PI;
 
 
 		//---------------------------------------------------------------------------------------------------
@@ -315,12 +317,12 @@
 			float q2q3 = data.Quat[2] * data.Quat[3];
 			float q3q3 = data.Quat[3] * data.Quat[3];
 
-            norm = invSqrt(data.Acc[0] * data.Acc[0] + data.Acc[1] * data.Acc[1] + data.Acc[2] * data.Acc[2]);
-            data.Acc[0] = data.Acc[0] * norm;
+			norm = invSqrt(data.Acc[0] * data.Acc[0] + data.Acc[1] * data.Acc[1] + data.Acc[2] * data.Acc[2]);
+			data.Acc[0] = data.Acc[0] * norm;
 			data.Acc[1] = data.Acc[1] * norm;
 			data.Acc[2] = data.Acc[2] * norm;
 
-            norm = invSqrt(data.Mag[0] * data.Mag[0] + data.Mag[1] * data.Mag[1] + data.Mag[2] * data.Mag[2]);
+			norm = invSqrt(data.Mag[0] * data.Mag[0] + data.Mag[1] * data.Mag[1] + data.Mag[2] * data.Mag[2]);
 			data.Mag[0] = data.Mag[0] * norm;
 			data.Mag[1] = data.Mag[1] * norm;
 			data.Mag[2] = data.Mag[2] * norm;

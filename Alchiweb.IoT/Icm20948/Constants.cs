@@ -1,9 +1,4 @@
-﻿// ====================================================================================================
-// Produced by the Free Edition of C++ to C# Converter.
-// Purchase a Premium Edition license at:
-// https://www.tangiblesoftwaresolutions.com/order/order-cplus-to-csharp.html
-// ====================================================================================================
-namespace TestOrin.Icm20948
+﻿namespace Alchiweb.IoT.Icm20948
 {
 	internal static class Constants
 	{

@@ -1,12 +1,13 @@
-﻿using System.Device.I2c;
-using TestOrin.Extensions;
-using TestOrin.Icm20948.Enums;
-using TestOrin.Icm20948.Configs;
+﻿using Alchiweb.IoT.Icm20948.Enums;
+using Alchiweb.IoT.Icm20948.Configs;
+using Meadow.Hardware;
+using System;
+using System.Threading.Tasks;
 
-namespace TestOrin.Icm20948
+namespace Alchiweb.IoT.Icm20948
 {
 
-	public class Icm20948 : IDisposable
+	public class ImuIcm20948
 	{
 		/** Current memory bank. */
 		private ICM_BANK mCurrentBank;
@@ -21,25 +22,18 @@ namespace TestOrin.Icm20948
 		/** Preallocated buffer for raw IMU data. */
 		private byte[] mRawDataBuf = new byte[22];
 		/** Class for controlling I2C communication. */
-		private I2cDevice mI2C;
+		private II2cCommunications mI2C;
 
 		/**
 		 * Basic constructor, initialises all variables.
 		 */
-		public Icm20948(I2cDevice device)
+		public ImuIcm20948(II2cCommunications i2cCommunications)
 		{
             mCurrentBank = ICM_BANK.BANK_UNDEFINED;
             Config = new IcmConfig();
             mGyroScale = 0.0f;
             mAccScale = 0.0f;
-            mI2C = device;
-		}
-
-		/**
-		 * Destructor - closes the serial connection if it was opened.
-		 */
-		public virtual void Dispose()
-		{
+            mI2C = i2cCommunications;
 		}
 
 		/**
@@ -64,7 +58,7 @@ namespace TestOrin.Icm20948
 			//if (mI2C.openSerialPort(IcmConfig.Device))
 			{
 				SetBank(ICM_BANK.BANK_0);
-				deviceID = mI2C.ReadByte(Constants.REG_ADD_WIA);
+				deviceID = mI2C.ReadRegister(Constants.REG_ADD_WIA);
 				if (Constants.REG_VAL_WIA == deviceID)
 				{
 					/* Reset all IMU configuration. */
@@ -72,7 +66,7 @@ namespace TestOrin.Icm20948
 
 					SetBank(ICM_BANK.BANK_3);
 					/* Reset I2C master clock. */
-					mI2C.WriteByte(Constants.REG_ADD_I2C_MST_CTRL, 0);
+					mI2C.WriteRegister(Constants.REG_ADD_I2C_MST_CTRL, 0);
 
 					await ConfigureMasterI2C();
 
@@ -172,12 +166,12 @@ namespace TestOrin.Icm20948
 
 			// Reset the offset so that we perform the fresh calibration
 			SetBank(ICM_BANK.BANK_2);
-			mI2C.WriteByte(Constants.REG_ADD_XG_OFFS_USRH, 0);
-			mI2C.WriteByte(Constants.REG_ADD_XG_OFFS_USRL, 0);
-			mI2C.WriteByte(Constants.REG_ADD_YG_OFFS_USRH, 0);
-			mI2C.WriteByte(Constants.REG_ADD_YG_OFFS_USRL, 0);
-			mI2C.WriteByte(Constants.REG_ADD_ZG_OFFS_USRH, 0);
-			mI2C.WriteByte(Constants.REG_ADD_ZG_OFFS_USRL, 0);
+			mI2C.WriteRegister(Constants.REG_ADD_XG_OFFS_USRH, 0);
+			mI2C.WriteRegister(Constants.REG_ADD_XG_OFFS_USRL, 0);
+			mI2C.WriteRegister(Constants.REG_ADD_YG_OFFS_USRH, 0);
+			mI2C.WriteRegister(Constants.REG_ADD_YG_OFFS_USRL, 0);
+			mI2C.WriteRegister(Constants.REG_ADD_ZG_OFFS_USRH, 0);
+			mI2C.WriteRegister(Constants.REG_ADD_ZG_OFFS_USRL, 0);
 
 			// Read several gyro measurements and average them.
 			for (int i = 0; i < 1024; ++i)
@@ -195,12 +189,12 @@ namespace TestOrin.Icm20948
 
 			// Push gyroscope biases to hardware registers
 			SetBank(ICM_BANK.BANK_2);
-			mI2C.WriteByte(Constants.REG_ADD_XG_OFFS_USRH, (byte)(s16G[0] >> 8 & 0xFF));
-			mI2C.WriteByte(Constants.REG_ADD_XG_OFFS_USRL, (byte)(s16G[0] & 0xFF));
-			mI2C.WriteByte(Constants.REG_ADD_YG_OFFS_USRH, (byte)(s16G[1] >> 8 & 0xFF));
-			mI2C.WriteByte(Constants.REG_ADD_YG_OFFS_USRL, (byte)(s16G[1] & 0xFF));
-			mI2C.WriteByte(Constants.REG_ADD_ZG_OFFS_USRH, (byte)(s16G[2] >> 8 & 0xFF));
-			mI2C.WriteByte(Constants.REG_ADD_ZG_OFFS_USRL, (byte)(s16G[2] & 0xFF));
+			mI2C.WriteRegister(Constants.REG_ADD_XG_OFFS_USRH, (byte)(s16G[0] >> 8 & 0xFF));
+			mI2C.WriteRegister(Constants.REG_ADD_XG_OFFS_USRL, (byte)(s16G[0] & 0xFF));
+			mI2C.WriteRegister(Constants.REG_ADD_YG_OFFS_USRH, (byte)(s16G[1] >> 8 & 0xFF));
+			mI2C.WriteRegister(Constants.REG_ADD_YG_OFFS_USRL, (byte)(s16G[1] & 0xFF));
+			mI2C.WriteRegister(Constants.REG_ADD_ZG_OFFS_USRH, (byte)(s16G[2] >> 8 & 0xFF));
+			mI2C.WriteRegister(Constants.REG_ADD_ZG_OFFS_USRL, (byte)(s16G[2] & 0xFF));
         }
 
 		/**
@@ -213,7 +207,7 @@ namespace TestOrin.Icm20948
 		{
 			if (bank != mCurrentBank && bank != ICM_BANK.BANK_UNDEFINED)
 			{
-				mI2C.WriteByte(Constants.REG_ADD_REG_BANK_SEL, (byte)bank);
+				mI2C.WriteRegister(Constants.REG_ADD_REG_BANK_SEL, (byte)bank);
                 mCurrentBank = bank;
 			}
 		}
@@ -230,11 +224,11 @@ namespace TestOrin.Icm20948
 
 			SetBank(ICM_BANK.BANK_0);
 			/* Reset all settings on master device  */
-			mI2C.WriteByte(Constants.REG_ADD_PWR_MGMT_1, Constants.REG_VAL_ALL_RGE_RESET);
+			mI2C.WriteRegister(Constants.REG_ADD_PWR_MGMT_1, Constants.REG_VAL_ALL_RGE_RESET);
 
 			await Task.Delay(TimeSpan.FromMilliseconds(10));
 			/* Enable optimal on-board timer and configure temperature sensor */
-			mI2C.WriteByte(Constants.REG_ADD_PWR_MGMT_1, (byte)(Constants.REG_VAL_RUN_MODE | (Config.Temp.MustBeEnabled ? 0 : 1) << 3));
+			mI2C.WriteRegister(Constants.REG_ADD_PWR_MGMT_1, (byte)(Constants.REG_VAL_RUN_MODE | (Config.Temp.MustBeEnabled ? 0 : 1) << 3));
 
 			/* Enable both sensors */
 			if (!Config.Gyro.MustBeEnabled)
@@ -245,7 +239,7 @@ namespace TestOrin.Icm20948
 			{
 				sensorsFlag |= Constants.REG_VAL_DISABLE_ACC;
 			}
-			mI2C.WriteByte(Constants.REG_ADD_PWR_MGMT_2, sensorsFlag);
+			mI2C.WriteRegister(Constants.REG_ADD_PWR_MGMT_2, sensorsFlag);
 			await Task.Delay(TimeSpan.FromMilliseconds(10));
 
 			/* Reset all settings on magnetometer.
@@ -298,12 +292,12 @@ namespace TestOrin.Icm20948
 			}
 
 			SetBank(ICM_BANK.BANK_2);
-			mI2C.WriteByte(Constants.REG_ADD_GYRO_SMPLRT_DIV, (byte)(sampleRateDivisor & 0xFF));
-			mI2C.WriteByte(Constants.REG_ADD_GYRO_CONFIG_1, (byte)((int)Config.Gyro.DlpfBandWidth | (int)Config.Gyro.Range << 1));
+			mI2C.WriteRegister(Constants.REG_ADD_GYRO_SMPLRT_DIV, (byte)(sampleRateDivisor & 0xFF));
+			mI2C.WriteRegister(Constants.REG_ADD_GYRO_CONFIG_1, (byte)((int)Config.Gyro.DlpfBandWidth | (int)Config.Gyro.Range << 1));
 
 			if (Config.Gyro.Averaging > GyroAveraging.GYRO_AVERAGING_NONE)
 			{
-				mI2C.WriteByte(Constants.REG_ADD_GYRO_CONFIG_2, (byte)Config.Gyro.Averaging);
+				mI2C.WriteRegister(Constants.REG_ADD_GYRO_CONFIG_2, (byte)Config.Gyro.Averaging);
 			}
 		}
 
@@ -345,13 +339,13 @@ namespace TestOrin.Icm20948
 			}
 
 			SetBank(ICM_BANK.BANK_2);
-			mI2C.WriteByte(Constants.REG_ADD_ACCEL_SMPLRT_DIV_1, (byte)(sampleRateDivisor >> 8 & 0x0F));
-			mI2C.WriteByte(Constants.REG_ADD_ACCEL_SMPLRT_DIV_2, (byte)(sampleRateDivisor & 0xFF));
-			mI2C.WriteByte(Constants.REG_ADD_ACCEL_CONFIG, (byte)((int)bandwidth | (int)Config.Acc.Range << 1));
+			mI2C.WriteRegister(Constants.REG_ADD_ACCEL_SMPLRT_DIV_1, (byte)(sampleRateDivisor >> 8 & 0x0F));
+			mI2C.WriteRegister(Constants.REG_ADD_ACCEL_SMPLRT_DIV_2, (byte)(sampleRateDivisor & 0xFF));
+			mI2C.WriteRegister(Constants.REG_ADD_ACCEL_CONFIG, (byte)((int)bandwidth | (int)Config.Acc.Range << 1));
 
 			if (AccAveraging.ACC_AVERAGING_NONE < Config.Acc.Averaging)
 			{
-				mI2C.WriteByte(Constants.REG_ADD_ACCEL_CONFIG_2, (byte)Config.Acc.Averaging);
+				mI2C.WriteRegister(Constants.REG_ADD_ACCEL_CONFIG_2, (byte)Config.Acc.Averaging);
 			}
 		}
 
@@ -397,7 +391,7 @@ namespace TestOrin.Icm20948
 		{
 			SetBank(ICM_BANK.BANK_2);
 			/* configure temperature sensor */
-			mI2C.WriteByte(Constants.REG_ADD_TEMP_CONFIG, (byte)Config.Temp.DlpfBandWidth);
+			mI2C.WriteRegister(Constants.REG_ADD_TEMP_CONFIG, (byte)Config.Temp.DlpfBandWidth);
 		}
 
 		/**
@@ -408,12 +402,12 @@ namespace TestOrin.Icm20948
 			byte temp = new byte();
 			SetBank(ICM_BANK.BANK_0);
 			/* Read the current user control and update it with new configuration to enable I2C master */
-			temp = mI2C.ReadByte(Constants.REG_ADD_USER_CTRL);
-			mI2C.WriteByte(Constants.REG_ADD_USER_CTRL, (byte)(temp | Constants.REG_VAL_BIT_I2C_MST_EN));
+			temp = mI2C.ReadRegister(Constants.REG_ADD_USER_CTRL);
+			mI2C.WriteRegister(Constants.REG_ADD_USER_CTRL, (byte)(temp | Constants.REG_VAL_BIT_I2C_MST_EN));
 
 			/* Set I2C master clock to recommended value. */
 			SetBank(ICM_BANK.BANK_3);
-			mI2C.WriteByte(Constants.REG_ADD_I2C_MST_CTRL, Constants.REG_VAL_I2C_MST_CTRL_CLK_400KHZ);
+			mI2C.WriteRegister(Constants.REG_ADD_I2C_MST_CTRL, Constants.REG_VAL_I2C_MST_CTRL_CLK_400KHZ);
 
 			await Task.Delay(TimeSpan.FromMilliseconds(10));
 		}
@@ -428,7 +422,7 @@ namespace TestOrin.Icm20948
 		{
 			byte[] u8Buf = new byte[Conversion.GYRO_AND_ACC_DATA_LEN];
 			SetBank(ICM_BANK.BANK_0);
-			mI2C.Read(Constants.REG_ADD_GYRO_XOUT_H, u8Buf);
+			mI2C.ReadRegister(Constants.REG_ADD_GYRO_XOUT_H, u8Buf);
 			gyro[0] = (short)(u8Buf[0] << 8 | u8Buf[1]);
 			gyro[1] = (short)(u8Buf[2] << 8 | u8Buf[3]);
 			gyro[2] = (short)(u8Buf[4] << 8 | u8Buf[5]);
@@ -442,7 +436,7 @@ namespace TestOrin.Icm20948
 		{
 			byte[] u8Buf = new byte[Conversion.GYRO_AND_ACC_DATA_LEN];
 			SetBank(ICM_BANK.BANK_0);
-			mI2C.Read(Constants.REG_ADD_ACCEL_XOUT_H, u8Buf);
+			mI2C.ReadRegister(Constants.REG_ADD_ACCEL_XOUT_H, u8Buf);
 			acc[0] = u8Buf[0] << 8 | u8Buf[1];
 			acc[1] = u8Buf[2] << 8 | u8Buf[3];
 			acc[2] = u8Buf[4] << 8 | u8Buf[5];
@@ -457,7 +451,7 @@ namespace TestOrin.Icm20948
 		{
 			byte[] u8Buf = new byte[Conversion.MAG_DATA_LEN];
 			SetBank(ICM_BANK.BANK_0);
-			mI2C.Read(Constants.REG_ADD_EXT_SENS_DATA_00,  u8Buf);
+			mI2C.ReadRegister(Constants.REG_ADD_EXT_SENS_DATA_00,  u8Buf);
 			mag[0] = u8Buf[1] << 8 | u8Buf[0];
 			mag[1] = -(u8Buf[3] << 8 | u8Buf[2]);
 			mag[2] = -(u8Buf[5] << 8 | u8Buf[4]);
@@ -472,7 +466,7 @@ namespace TestOrin.Icm20948
 		{
 			byte[] u8Buf = [0, 0];
 			SetBank(ICM_BANK.BANK_0);
-			mI2C.Read(Constants.REG_ADD_TEMP_OUT_H, u8Buf);
+			mI2C.ReadRegister(Constants.REG_ADD_TEMP_OUT_H, u8Buf);
 			return u8Buf[0] << 8 | u8Buf[1];
 		}
 
@@ -487,7 +481,7 @@ namespace TestOrin.Icm20948
 		private bool ReadAllRawDAta(short[] gyro, short[] acc, short[] mag, ref short temp)
 		{
 			SetBank(ICM_BANK.BANK_0);
-			mI2C.Read(Constants.REG_ADD_ACCEL_XOUT_H, mRawDataBuf);
+			mI2C.ReadRegister(Constants.REG_ADD_ACCEL_XOUT_H, mRawDataBuf);
 
 			/* Parse accelerometer data */
 			acc[0] = (short)(mRawDataBuf[0] << 8 | mRawDataBuf[1]);
@@ -535,12 +529,12 @@ namespace TestOrin.Icm20948
 		private void MagI2CRead(byte regAddr, byte length, byte[] data)
 		{
 			SetBank(ICM_BANK.BANK_3);
-			mI2C.WriteByte(Constants.REG_ADD_I2C_SLV0_ADDR, Constants.I2C_ADD_ICM20948_AK09916 | Constants.I2C_ADD_ICM20948_AK09916_READ);
-			mI2C.WriteByte(Constants.REG_ADD_I2C_SLV0_REG, regAddr);
-			mI2C.WriteByte(Constants.REG_ADD_I2C_SLV0_CTRL, (byte)(Constants.REG_VAL_BIT_SLV0_EN | length));
+			mI2C.WriteRegister(Constants.REG_ADD_I2C_SLV0_ADDR, Constants.I2C_ADD_ICM20948_AK09916 | Constants.I2C_ADD_ICM20948_AK09916_READ);
+			mI2C.WriteRegister(Constants.REG_ADD_I2C_SLV0_REG, regAddr);
+			mI2C.WriteRegister(Constants.REG_ADD_I2C_SLV0_CTRL, (byte)(Constants.REG_VAL_BIT_SLV0_EN | length));
 
 			SetBank(ICM_BANK.BANK_0);
-			mI2C.Read(Constants.REG_ADD_EXT_SENS_DATA_00, data);
+			mI2C.ReadRegister(Constants.REG_ADD_EXT_SENS_DATA_00, data);
 		}
 
 		/**
@@ -552,10 +546,10 @@ namespace TestOrin.Icm20948
 		{
 			byte[] u8Temp = [0];
 			SetBank(ICM_BANK.BANK_3);
-			mI2C.WriteByte(Constants.REG_ADD_I2C_SLV0_ADDR, Constants.I2C_ADD_ICM20948_AK09916 | Constants.I2C_ADD_ICM20948_AK09916_WRITE);
-			mI2C.WriteByte(Constants.REG_ADD_I2C_SLV0_REG, regAddr);
-			mI2C.WriteByte(Constants.REG_ADD_I2C_SLV0_DO, value);
-			mI2C.WriteByte(Constants.REG_ADD_I2C_SLV0_CTRL, Constants.REG_VAL_BIT_SLV0_EN | 1);
+			mI2C.WriteRegister(Constants.REG_ADD_I2C_SLV0_ADDR, Constants.I2C_ADD_ICM20948_AK09916 | Constants.I2C_ADD_ICM20948_AK09916_WRITE);
+			mI2C.WriteRegister(Constants.REG_ADD_I2C_SLV0_REG, regAddr);
+			mI2C.WriteRegister(Constants.REG_ADD_I2C_SLV0_DO, value);
+			mI2C.WriteRegister(Constants.REG_ADD_I2C_SLV0_CTRL, Constants.REG_VAL_BIT_SLV0_EN | 1);
 
 			await Task.Delay(TimeSpan.FromMilliseconds(100));
 			MagI2CRead(regAddr, 1, u8Temp);

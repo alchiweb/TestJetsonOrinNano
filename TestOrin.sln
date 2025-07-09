@@ -5,7 +5,9 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestOrin", "src\TestOrin\TestOrin.csproj", "{E99B72D5-2E13-4BB3-B580-1977E144919E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{32D05CD4-3C1D-4151-B55F-13AC3C85212C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeadowOrin", "src\MeadowOrin\MeadowOrin.csproj", "{FC376246-B46A-7077-D69B-3C415F4FF657}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Alchiweb.IoT", "Alchiweb.IoT\Alchiweb.IoT.shproj", "{1BFFBB0E-0D7E-4506-B36D-1B3B0423C6E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,14 +19,20 @@ Global
 		{E99B72D5-2E13-4BB3-B580-1977E144919E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E99B72D5-2E13-4BB3-B580-1977E144919E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E99B72D5-2E13-4BB3-B580-1977E144919E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC376246-B46A-7077-D69B-3C415F4FF657}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC376246-B46A-7077-D69B-3C415F4FF657}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC376246-B46A-7077-D69B-3C415F4FF657}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC376246-B46A-7077-D69B-3C415F4FF657}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{E99B72D5-2E13-4BB3-B580-1977E144919E} = {32D05CD4-3C1D-4151-B55F-13AC3C85212C}
-	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {98699620-CC70-4893-990F-E5F9FE7DFD99}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Alchiweb.IoT\Alchiweb.IoT.projitems*{1bffbb0e-0d7e-4506-b36d-1b3b0423c6e5}*SharedItemsImports = 13
+		Alchiweb.IoT\Alchiweb.IoT.projitems*{e99b72d5-2e13-4bb3-b580-1977e144919e}*SharedItemsImports = 5
+		Alchiweb.IoT\Alchiweb.IoT.projitems*{fc376246-b46a-7077-d69b-3c415f4ff657}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal
