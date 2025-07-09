@@ -1,6 +1,7 @@
-using System.Drawing;
+using Iot.Device.FtCommon;
 using Iot.Device.Graphics;
 using Iot.Device.Media;
+using System.Drawing;
 // using Iot.Device.Graphics.SkiaSharpAdapter;
 // using SkiaSharp;
 
@@ -27,20 +28,20 @@ public class Camera
         Settings = new VideoConnectionSettings(
             busId: 0,
             captureSize: (1280 , 720 ),
-            pixelFormat: PixelFormat.SRGGB10
+            pixelFormat: VideoPixelFormat.SRGGB10
         );
         Device = VideoDevice.Create(Settings);
         Device.ImageBufferPoolingEnabled = true;
-        var bytes = Device.Capture();
-        var ms = new MemoryStream(bytes);  //);.AsMemory().Slice(0, bytes.Length).ToArray());
-        System.Drawing.Color[] colors = RG10ToRgb(ms, Settings.CaptureSize);
-        var bitmap = VideoDevice.RgbToBitmap(Settings.CaptureSize, colors);
-        //Device.Settings.PixelFormat = PixelFormat.YUV420;
+        //var bytes = Device.Capture();
+        //var ms = new MemoryStream(bytes);  //);.AsMemory().Slice(0, bytes.Length).ToArray());
+        //Color[] colors = VideoDevice.Nv12ToRgb(ms, Settings.CaptureSize);
+        //var bitmap = VideoDevice.RgbToBitmap(Settings.CaptureSize, colors);
+        ////Device.Settings.PixelFormat = PixelFormat.YUV420;
 
-        // Get image stream, convert pixel format and save to file
-        if (File.Exists(FILENAME))
-            File.Delete(FILENAME);
-        bitmap.Save(FILENAME, System.Drawing.Imaging.ImageFormat.Jpeg);
+        //// Get image stream, convert pixel format and save to file
+        //if (File.Exists(FILENAME))
+        //    File.Delete(FILENAME);
+        //bitmap.SaveToFile(FILENAME, ImageFileType.Jpg);
 
 
 

@@ -34,23 +34,23 @@ namespace TestOrin
             // };
             // await ProcessCamera(arg, processSettings);
 
-            // var camera = new Camera();
+             var camera = new Camera();
 
-            // IEnumerable<PixelFormat> formats = camera.Device.GetSupportedPixelFormats();
+            IEnumerable<VideoPixelFormat> formats = camera.Device.GetSupportedPixelFormats();
 
-            // foreach (var format in formats)
-            // {
-            //     Console.WriteLine($"Pixel Format {format}");
-            //     IEnumerable<Resolution> resolutions = camera.Device.GetPixelFormatResolutions(format);
-            //     if (resolutions is not null)
-            //     {
-            //         foreach (var res in resolutions)
-            //         {
-            //             Console.WriteLine($"   min res: {res.MinWidth} x {res.MinHeight} ");
-            //             Console.WriteLine($"   max res: {res.MaxWidth} x {res.MaxHeight} ");
-            //         }
-            //     }
-            // }
+            foreach (var format in formats)
+            {
+                Console.WriteLine($"Pixel Format {format}");
+                IEnumerable<Resolution> resolutions = camera.Device.GetPixelFormatResolutions(format);
+                if (resolutions is not null)
+                {
+                    foreach (var res in resolutions)
+                    {
+                        Console.WriteLine($"   min res: {res.MinWidth} x {res.MinHeight} ");
+                        Console.WriteLine($"   max res: {res.MaxWidth} x {res.MaxHeight} ");
+                    }
+                }
+            }
 
             // //camera.Device.DevicePath = "/dev/video";
             // camera.Device.Capture("/home/orinadmin/Videos/test2.jpg");
