@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Meadow.Blazor" Version="2.2.0.10-beta" />
+  </ItemGroup>
+
+  <Import Project="..\Alchiweb.IoT\Alchiweb.IoT.projitems" Label="Shared" />
+
+</Project>

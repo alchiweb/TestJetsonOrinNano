@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>891f37d8-01a8-46af-b0ed-3142010541f6</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>MeadowWrapper</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AppBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ByteOrder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hardware\DuplexType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Foundation\I2cCommunications.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hardware\II2cCommunications.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IApp.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Foundation\" />
+  </ItemGroup>
+</Project>
