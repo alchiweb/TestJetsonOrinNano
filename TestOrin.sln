@@ -19,6 +19,8 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "MeadowWrapper", "src\Meadow
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "MeadowWrapper.Blazor", "src\MeadowWrapper.Blazor\MeadowWrapper.Blazor.shproj", "{901A0FAF-66D8-4DBF-87C9-2B1112B1C3F9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sensors.Motion.Icm20948", "src\Sensors.Motion.Icm20948\Sensors.Motion.Icm20948.csproj", "{3414EAAC-9420-59AF-E090-0D7F8E40F595}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,12 @@ Global
 		{C2680EA2-F0FC-4B52-930F-64D8CA0FAAB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2680EA2-F0FC-4B52-930F-64D8CA0FAAB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2680EA2-F0FC-4B52-930F-64D8CA0FAAB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3414EAAC-9420-59AF-E090-0D7F8E40F595}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3414EAAC-9420-59AF-E090-0D7F8E40F595}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3414EAAC-9420-59AF-E090-0D7F8E40F595}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{3414EAAC-9420-59AF-E090-0D7F8E40F595}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3414EAAC-9420-59AF-E090-0D7F8E40F595}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3414EAAC-9420-59AF-E090-0D7F8E40F595}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,12 +61,12 @@ Global
 		{C2680EA2-F0FC-4B52-930F-64D8CA0FAAB4} = {02EED16C-03F7-41A7-A135-F93538AF2D48}
 		{891F37D8-01A8-46AF-B0ED-3142010541F6} = {02EED16C-03F7-41A7-A135-F93538AF2D48}
 		{901A0FAF-66D8-4DBF-87C9-2B1112B1C3F9} = {02EED16C-03F7-41A7-A135-F93538AF2D48}
+		{3414EAAC-9420-59AF-E090-0D7F8E40F595} = {02EED16C-03F7-41A7-A135-F93538AF2D48}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {98699620-CC70-4893-990F-E5F9FE7DFD99}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		src\Alchiweb.IoT\Alchiweb.IoT.projitems*{17e29e13-643b-4523-a5ad-6cbbf340ed36}*SharedItemsImports = 5
 		src\Alchiweb.IoT\Alchiweb.IoT.projitems*{1bffbb0e-0d7e-4506-b36d-1b3b0423c6e5}*SharedItemsImports = 13
 		src\MeadowWrapper\MeadowWrapper.projitems*{891f37d8-01a8-46af-b0ed-3142010541f6}*SharedItemsImports = 13
 		src\MeadowWrapper.Blazor\MeadowWrapper.Blazor.projitems*{901a0faf-66d8-4dbf-87c9-2b1112b1c3f9}*SharedItemsImports = 13

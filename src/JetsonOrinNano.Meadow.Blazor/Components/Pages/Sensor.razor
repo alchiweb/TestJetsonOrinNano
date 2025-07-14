@@ -1,0 +1,49 @@
+@page "/sensor"
+@rendermode InteractiveServer
+@inject Meadow.Blazor.Services.SensorViewModel ViewModel
+
+<div class="container">
+    <div class="content">
+        <div class="image-container">
+            <img src="Assets/meadow.png" alt="Meadow" />
+        </div>
+        <h1>Meadow Blazor</h1>
+        <h2>IMU values from Jetson Nano</h2>
+
+        <div class="readings">
+        <div class="reading">
+            <span>Temperature:</span>
+            <span>@ViewModel.TemperatureValue</span>
+        </div>
+        <div class="reading">
+            <span>Angle:</span>
+            <span>@ViewModel.AngleValue</span>
+        </div>
+        <div class="reading">
+            <span>Acceleration:</span>
+            <span>@ViewModel.AccelerationValue</span>
+        </div>
+        <div class="reading">
+            <span>Magnetic:</span>
+            <span>@ViewModel.MagneticValue</span>
+        </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+        ViewModel.StateChanged += OnViewModelStateChanged;
+    }
+
+    private void OnViewModelStateChanged()
+    {
+        InvokeAsync(StateHasChanged).GetAwaiter().GetResult();
+    }
+
+    public void Dispose()
+    {
+        ViewModel.StateChanged -= OnViewModelStateChanged;
+    }
+}

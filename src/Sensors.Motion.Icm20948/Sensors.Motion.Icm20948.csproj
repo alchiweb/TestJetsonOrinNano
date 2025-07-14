@@ -1,0 +1,30 @@
+﻿<Project Sdk="Meadow.Sdk/1.1.0">
+  <PropertyGroup>
+    <PackageReadmeFile>Readme.md</PackageReadmeFile>
+    <Nullable>enable</Nullable>
+	<PackageVersion>1.0.0-alpha</PackageVersion>
+	<LangVersion>13.0</LangVersion>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PackageIcon>icon.png</PackageIcon>
+    <Authors>Wilderness Labs, Inc</Authors>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <OutputType>Library</OutputType>
+    <AssemblyName>Icm20948</AssemblyName>
+    <Company>Wilderness Labs, Inc</Company>
+    <PackageProjectUrl></PackageProjectUrl>
+    <PackageId>Meadow.Foundation.Sensors.Motion.Icm20948</PackageId>
+    <RepositoryUrl></RepositoryUrl>
+    <PackageTags>Meadow.Foundation, Icm20948, Motion</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>Icm20948 I2C IMU (tested in Imx219-83) https://www.waveshare.com/wiki/IMX219-83_Stereo_Camera</Description>
+    <RootNamespace>Meadow.Foundation.Sensors.Motion</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include=".\Readme.md" Pack="true" PackagePath="" />
+    <None Include=".\icon.png" Pack="true" PackagePath="" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Meadow.Foundation" Version="2.2.0.10-beta" />
+  </ItemGroup>
+</Project>

@@ -1,6 +1,8 @@
 using JetsonOrinNano.Meadow.Blazor;
 using JetsonOrinNano.Meadow.Blazor.Components;
+using JetsonOrinNano.Meadow.Blazor.Services;
 using Meadow.Blazor;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+builder.Services.AddScoped<SensorViewModel>();
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
